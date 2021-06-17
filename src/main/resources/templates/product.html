@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:insert="blocks/header :: headerBlock"></header>
+    <main>
+        <div th:each="el : ${products}">
+            <div th:insert="blocks/product :: productBlock"></div>
+        </div>
+        <div>
+            <a href="/addProduct">Добавить товар</a>
+        </div>
+    </main>
+
+    <footer th:insert="blocks/footer :: footerBlock"></footer>
+
+</body>
+</html>
