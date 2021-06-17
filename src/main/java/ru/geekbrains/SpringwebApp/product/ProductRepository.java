@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public class ProductRepository {
     private static final List<Product> products = new ArrayList<>();
-    private int idCounter = 1;
+    private static int idCounter = 1;
 
     public static Product findById(int id) {
         return products.stream().filter(it -> it.getId() == id).findFirst().orElse(null);
@@ -19,7 +19,7 @@ public class ProductRepository {
         return products;
     }
 
-    public void add(String name, double cost) {
+    public static void add(String name, double cost) {
         products.add(new Product(idCounter++, name, cost));
 
     }
@@ -30,7 +30,7 @@ public class ProductRepository {
         add("Кишка великана Николая", 110);
         add( "Крендель судьбы", 59);
         add( "Загадочный пирог", 87.87);
-       add( "Стиранная пастила", 87.65);
+        add( "Стиранная пастила", 87.65);
     }
 
 
