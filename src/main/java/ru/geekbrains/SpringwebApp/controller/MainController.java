@@ -5,12 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.SpringwebApp.product.Product;
 import ru.geekbrains.SpringwebApp.product.ProductRepository;
 
 @Controller
 public class MainController {
-    ProductRepository pr;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -24,8 +24,11 @@ public class MainController {
         return "addProduct";
     }
 
-    @PostMapping("/addProd")
-    public String postAddRequest(Model model, @RequestBody Product product) {
-        return "product";
+    @PostMapping("/")
+    public String postAddRequest(Model model,
+                                 @RequestParam String name,
+                                 @RequestParam double cost) {
+        ProductRepository.add(name, cost);
+        return "redirect:/";
     }
 }
