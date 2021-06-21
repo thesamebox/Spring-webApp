@@ -1,20 +1,27 @@
 package ru.geekbrains.SpringwebApp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import ru.geekbrains.SpringwebApp.product.Product;
-import ru.geekbrains.SpringwebApp.product.ProductRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.geekbrains.SpringwebApp.model.entity.Product;
+import ru.geekbrains.SpringwebApp.model.repository.ProductDao;
+import ru.geekbrains.SpringwebApp.model.repository.ProductRepository_old;
 
 @Controller
 public class MainController {
-    ProductRepository pr;
+
+    private ProductDao pd;
+
+    public MainController(ProductDao pd) {
+        this.pd = pd;
+    }
 
     @GetMapping("/")
     public String index(Model model) {
-        Iterable<Product> products = ProductRepository.showAll();
+        Iterable<Product> products = pd.findAll();
         model.addAttribute("products", products);
         return "product";
     }
@@ -24,8 +31,15 @@ public class MainController {
         return "addProduct";
     }
 
-    @PostMapping("/addProd")
-    public String postAddRequest(Model model, @RequestBody Product product) {
-        return "product";
+    @PostMapping("/")
+    public String postAddRequest(Model model,
+                                 @RequestParam String name,
+                                 @RequestParam double cost) {
+        final Product product = new Product();
+        product.setName(name);
+        product.setCost(cost);
+        pd.save(product);
+//        ProductRepository_old.add(name, cost);
+        return "redirect:/";
     }
 }

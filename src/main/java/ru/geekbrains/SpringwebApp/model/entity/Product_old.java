@@ -1,12 +1,9 @@
-package ru.geekbrains.SpringwebApp.product;
+package ru.geekbrains.SpringwebApp.model.entity;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
-public class Product {
+public class Product_old {
 
     private int id;
     private String name;
@@ -36,12 +33,12 @@ public class Product {
         this.cost = cost;
     }
 
-    public Product(int id, String name, double cost) {
+    public Product_old(int id, String name, double cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
     }
-    public Product() {
+    public Product_old() {
     }
 }
 
