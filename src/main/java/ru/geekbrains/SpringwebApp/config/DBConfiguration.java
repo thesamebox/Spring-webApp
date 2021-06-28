@@ -20,9 +20,9 @@ public class DBConfiguration {
     @Bean
     public DataSource dataSource() {
         JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setUser("postgres");
-        dataSource.setPassword("admin");
-        dataSource.setURL("jdbc:h2:./PRODUCT");
+        dataSource.setUser("root");
+        dataSource.setPassword("");
+        dataSource.setURL("jdbc:h2:./otloveit");
 
         return dataSource;
     }
@@ -40,7 +40,7 @@ public class DBConfiguration {
         Properties hibernateProperties = new Properties();
 
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "none");
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
 
         return hibernateProperties;

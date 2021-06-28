@@ -1,9 +1,10 @@
 package ru.geekbrains.SpringwebApp.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "PRODUCT")
 @NamedQueries({
         @NamedQuery(name = "Product.findAll", query = "SELECT a FROM Product a"),
         @NamedQuery(name = "Product.findById", query = "SELECT a FROM Product a WHERE a.id = :id")
@@ -20,6 +21,12 @@ public class Product {
 
     @Column(name = "cost")
     private Double cost;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name = "USERS_PRODUCT",
+                joinColumns = @JoinColumn(name = "productid"),
+                inverseJoinColumns = @JoinColumn(name = "userid"))
+    private List<User> customers;
 
     public Long getId() {
         return id;
