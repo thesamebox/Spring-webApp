@@ -10,7 +10,7 @@ import ru.geekbrains.SpringwebApp.model.entity.User;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
+    //todo No converter found capable of converting from type [java.math.BigInteger] to type [ru.geekbrains.SpringwebApp.model.entity.User]
     @Query(value = "SELECT DISTINCT U.id, U.name " +
             "from USERS_PRODUCTS UP " +
             "left join USER U " +
