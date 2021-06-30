@@ -4,51 +4,46 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "PRODUCT")
-@NamedQueries({
-        @NamedQuery(name = "Product.findAll", query = "SELECT a FROM Product a"),
-        @NamedQuery(name = "Product.findById", query = "SELECT a FROM Product a WHERE a.id = :id")
-})
+@Table(name = "product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "cost")
-    private Double cost;
+    private double cost;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable (name = "USERS_PRODUCT",
-                joinColumns = @JoinColumn(name = "productid"),
-                inverseJoinColumns = @JoinColumn(name = "userid"))
+    @JoinTable (name = "USERS_PRODUCTS",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> customers;
 
-    public Long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setCost(Double cost) {
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

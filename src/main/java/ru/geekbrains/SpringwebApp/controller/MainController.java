@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.SpringwebApp.model.entity.Product;
 import ru.geekbrains.SpringwebApp.model.entity.User;
-import ru.geekbrains.SpringwebApp.model.repository.ProductDao;
-import ru.geekbrains.SpringwebApp.model.repository.UserDao;
+import ru.geekbrains.SpringwebApp.model.repository.ProductRepository;
+import ru.geekbrains.SpringwebApp.model.repository.UserRepository;
 
 @Controller
 public class MainController {
 
-    private final ProductDao pd;
-    private final UserDao ud;
+    private final ProductRepository pr;
+    private final UserRepository ur;
 
-    public MainController(ProductDao pd, UserDao ud) {
-        this.pd = pd;
-        this.ud = ud;
+    public MainController(ProductRepository pr, UserRepository ur) {
+        this.pr = pr;
+        this.ur = ur;
     }
 
     @GetMapping("/")
     public String index(Model model) {
-        Iterable<Product> products = pd.findAll();
+        Iterable<Product> products = pr.findAll();
         model.addAttribute("products", products);
         return "product";
     }
@@ -36,15 +36,15 @@ public class MainController {
         final Product product = new Product();
         product.setName(name);
         product.setCost(cost);
-        pd.save(product);
+        pr.save(product);
         return "redirect:/";
     }
 
 
     @PostMapping("/del")
     public String delete(Model model,
-                                @RequestParam long id) {
-        pd.delete(id);
+                         @RequestParam long id) {
+        pr.deleteById(id);
         return "redirect:/";
     }
 
@@ -53,22 +53,22 @@ public class MainController {
                          @RequestParam long id,
                          @RequestParam String name,
                          @RequestParam double cost) {
-        pd.update(id, name, cost);
+        pr.update(id, name, cost);
         return "redirect:/";
     }
 
     @GetMapping("/sold")
     public String findWhoBought(Model model,
                                 @RequestParam long id) {
-        Iterable<User> user = pd.whoBought(id);
+        Iterable<User> user = pr.whoBought(id);
         model.addAttribute("users", user);
         return "sold";
     }
 
     @GetMapping("/bought")
     public String findWhatBought(Model model,
-                                @RequestParam long id) {
-        Iterable<Product> p = ud.whoBought(id);
+                                 @RequestParam long id) {
+        Iterable<Product> p = ur.whatBought(id);
         model.addAttribute("products", p);
         return "bought";
     }
