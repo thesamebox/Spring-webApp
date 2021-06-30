@@ -15,6 +15,6 @@ public class UserDao {
     }
 
     public List<Product> whoBought(long userid) {
-        return entityManager.createNativeQuery(String.format("SELECT PRODUCT.id, PRODUCT.name, PRODUCT.cost from USERS_PRODUCT left join PRODUCT P on P.ID = USERS_PRODUCT.PRODUCTID where USERS_PRODUCT.userid = %s", userid), Product.class).getResultList();
+        return entityManager.createNativeQuery(String.format("SELECT P.id, P.name, UP.ex_actual_cost from USERS_PRODUCT UP left join PRODUCT P on P.ID = UP.PRODUCTID where UP.userid = %s", userid), Product.class).getResultList();
     }
 }
