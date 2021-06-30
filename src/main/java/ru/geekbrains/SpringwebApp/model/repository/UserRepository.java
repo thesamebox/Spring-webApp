@@ -9,8 +9,12 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-//    @Query("select distinct p.id, p.name, p.cost from Users_products up left join Product p on p.id = up.product_id where up.user_id = :id")
-    @Query(value = "SELECT PRODUCT.id, PRODUCT.name, PRODUCT.cost from USERS_PRODUCT left join PRODUCT P on P.ID = USERS_PRODUCT.PRODUCT_ID where USERS_PRODUCT.user_id = :id", nativeQuery = true)
+    @Query(value = "SELECT P.id, P.name, UP.ex_actual_cost " +
+            "from USERS_PRODUCTS UP " +
+            "left join PRODUCT P " +
+            "on P.id = UP.product_id " +
+            "where UP.user_id = :id",
+            nativeQuery = true)
     List<Product> whatBought(long id);
 
 }

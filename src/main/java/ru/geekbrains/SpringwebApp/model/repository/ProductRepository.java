@@ -11,8 +11,12 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-//    @Query("select distinct u.id, u.name from Users_products up left join User u on u.id = up.user_id where up.product_id = :id")
-    @Query(value = "SELECT DISTINCT id, name from USERS_PRODUCT left join USERS U on U.ID = USERS_PRODUCT.USER_ID where product_id = :id", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT U.id, U.name " +
+            "from USERS_PRODUCTS UP " +
+            "left join USER U " +
+            "on U.id = UP.user_id " +
+            "where product_id = :id",
+            nativeQuery = true)
     List<User> whoBought(long id);
 
     @Modifying
