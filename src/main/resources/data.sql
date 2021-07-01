@@ -5,6 +5,19 @@ insert into PRODUCT (name, cost) VALUES ('Загадочный пирог', 14.8
 insert into PRODUCT (name, cost) VALUES ('Стиранная пастила', 3.5);
 insert into PRODUCT (name, cost) VALUES ('Красная заварушка', 1.5);
 insert into PRODUCT (name, cost) VALUES ('Жирная солфетка', 0.5);
+insert into PRODUCT (name, cost) VALUES ('Чайная гуща', 0.1);
+insert into PRODUCT (name, cost) VALUES ('Виноградкая корка', 10.1);
+insert into PRODUCT (name, cost) VALUES ('Неожиданный поворот', 10.1);
+insert into PRODUCT (name, cost) VALUES ('Фирменные булочки', 30.5);
+insert into PRODUCT (name, cost) VALUES ('Натоптанные пирожки', 110);
+insert into PRODUCT (name, cost) VALUES ('Порошковые мюсли', 5.99);
+insert into PRODUCT (name, cost) VALUES ('Загадочный стих', 14.88);
+insert into PRODUCT (name, cost) VALUES ('Стиранная жвачка', 3.5);
+insert into PRODUCT (name, cost) VALUES ('Красная настойка', 1.5);
+insert into PRODUCT (name, cost) VALUES ('То, что не надо брать', 0.5);
+insert into PRODUCT (name, cost) VALUES ('Кофир 2.0', 0.1);
+insert into PRODUCT (name, cost) VALUES ('Прикус', 10.1);
+insert into PRODUCT (name, cost) VALUES ('Новый керндель', 10.1);
 
 insert into USER (name) values ('Виктор');
 insert into USER (name) values ('Пиктор');
