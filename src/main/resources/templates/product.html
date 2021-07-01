@@ -7,15 +7,50 @@
 <body>
     <header th:insert="blocks/header :: headerBlock"></header>
     <main>
-        <div th:each="el : ${products}">
-            <div th:insert="blocks/product :: productBlock"></div>
-        </div>
+<!--        <div th:fragment="product-list" th:if="${productList != null && !productList.isEmpty()}">-->
+            <div th:each="el : ${products}">
+                <form th:action="@{/del/{id}(id=${el.id})}" method="get">
+                    <div th:insert="blocks/product :: productBlock"></div>
+                </form>
+            </div>
+<!--        </div>-->
         <div>
-            <a href="/addProduct">Добавить товар</a>
+            <ul>
+                <li th:each="pageNumber : ${pageNumbers}" >
+                    <a th:href="@{/product-list/page/{page}(page=${pageNumber})}" th:text=${pageNumber}>1</a>
+                </li>
+            </ul>
         </div>
+
+
+        <h3>Добавить товар</h3>
+        <form action="/" method="post">
+            <input type="text" name="name" placeholder="new good">
+            <input type="text" name="cost" placeholder="it's cost">
+            <button type="submit">Добавить</button>
+        </form>
+
+        <h3>Изменить товар</h3>
+        <form action="/update" method="post">
+            <input type="text" name="id" placeholder="good's id">
+            <input type="text" name="name" placeholder="new name">
+            <input type="text" name="cost" placeholder="new cost">
+            <button type="submit">Изменить</button>
+        </form>
+
+        <h3>Кто же это купил</h3>
+        <form action="/sold" method="get">
+            <input type="text" name="id" placeholder="good's id">
+            <button type="submit">Показать</button>
+        </form>
+
+        <h3>Что купил этот юзер</h3>
+        <form action="/bought" method="get">
+            <input type="text" name="id" placeholder="user's id">
+            <button type="submit">Показать</button>
+        </form>
     </main>
 
     <footer th:insert="blocks/footer :: footerBlock"></footer>
-
 </body>
 </html>
