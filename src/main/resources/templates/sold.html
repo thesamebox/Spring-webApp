@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="blocks/header :: headerBlock"></header>
+<main>
+    <div th:each="el : ${users}">
+        <div th:insert="blocks/user :: userBlock"></div>
+    </div>
+    <a href="/">Васк</a>
+</main>
+
+<footer th:insert="blocks/footer :: footerBlock"></footer>
+
+</body>
+</html>

@@ -2,10 +2,11 @@
   <table>
     <tbody>
       <td>
-        <tr th:text="${el.id} + ' '"></tr>
-        <tr th:text="${el.name} + ' '"></tr>
-        <tr th:text="${el.cost} + '& '"></tr>
-      </td>
+          <tr th:text="${el.id} + ' '"></tr>
+          <tr th:text="${el.name} + ' '"></tr>
+          <tr th:text="${el.cost} + '& '" ></tr>
+          <button type="submit">Удалить</button>
+        <td>
     </tbody>
   </table>
 </div>
