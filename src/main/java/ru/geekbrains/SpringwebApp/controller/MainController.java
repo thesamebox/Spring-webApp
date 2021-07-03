@@ -34,11 +34,9 @@ public class MainController {
         return "product";
     }
 
-
     @PostMapping("/")
     public String postAddRequest(Model model,
-                                 @RequestParam String name,
-                                 @RequestParam double cost) {
+                                 @RequestParam String name, @RequestParam double cost) {
         final Product product = new Product();
         product.setName(name);
         product.setCost(cost);
